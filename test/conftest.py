@@ -14,7 +14,7 @@ def setup():
         "profile.password_manager_service":False,
         "profile.password_manager_leak_detection":False
     }
-    #opt.add_argument("--headless=new")
+    opt.add_argument("--headless=new")
     opt.add_experimental_option("prefs",pref)
 
     if browser.__eq__("Chrome"):
