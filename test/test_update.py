@@ -41,7 +41,7 @@ def test_login(setup):
     actions = ActionChains(driver)
     actions.key_down(Keys.END).perform()
     actions.key_down(Keys.BACKSPACE).perform()
-
+    driver.save_screenshot(r"C:\Users\ADMIN\PycharmProjects\PythonProject\Screenshot\updated.png")
     wait.until(EC.visibility_of_element_located((By.XPATH,"//textarea[@id='resumeHeadlineTxt']"))).send_keys(".")
     wait.until(EC.visibility_of_element_located((By.XPATH,"//button[normalize-space()='Save']"))).click()
     time.sleep(10)
