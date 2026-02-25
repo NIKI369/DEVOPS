@@ -24,7 +24,8 @@ def test_login(setup):
     wait = WebDriverWait(driver,10)
     wait.until(EC.visibility_of_element_located((By.XPATH,username_xpath))).send_keys(username)
     wait.until(EC.visibility_of_element_located((By.XPATH,pass_xpath))).send_keys(password)
-    driver.find_element(By.XPATH,"//button[normalize-space()='Login']").click()
+    wait.until(EC.visibility_of_element_located((By.XPATH,"//button[normalize-space()='Login']"))).click()
+    #driver.find_element(By.XPATH,"//button[normalize-space()='Login']").click()
     time.sleep(10)
 
     title = driver.find_element(By.XPATH,"//div[@class='info__heading']").text
