@@ -13,15 +13,18 @@ def test_login(setup):
     url = read_configuration("basic info","url")
     login_xpath = read_configuration("xpath",'login_btn')
     driver.implicitly_wait(15)
+    wait = WebDriverWait(driver,10)
     driver.get(url)
-    #time.sleep(10)
-    driver.find_element(By.XPATH,login_xpath).click()
+    time.sleep(10)
+    driver.get_screenshot_as_file(r"C:\Users\ADMIN\PycharmProjects\PythonProject\screenshots\url_load.png")
+    wait.until(EC.element_to_be_clickable((By.XPATH, "//a[@id='login_Layer']"))).click()
+    #driver.find_element(By.XPATH,login_xpath).click()
     username_xpath = read_configuration("xpath","username")
     username = read_configuration("login","username")
     pass_xpath = read_configuration("xpath","pass")
     password = read_configuration("login","pass")
 
-    wait = WebDriverWait(driver,10)
+
     wait.until(EC.visibility_of_element_located((By.XPATH,username_xpath))).send_keys(username)
     wait.until(EC.visibility_of_element_located((By.XPATH,pass_xpath))).send_keys(password)
     wait.until(EC.visibility_of_element_located((By.XPATH,"//button[normalize-space()='Login']"))).click()
@@ -47,6 +50,9 @@ def test_login(setup):
     wait.until(EC.visibility_of_element_located((By.XPATH,"//textarea[@id='resumeHeadlineTxt']"))).send_keys(".")
     wait.until(EC.visibility_of_element_located((By.XPATH,"//button[normalize-space()='Save']"))).click()
     time.sleep(10)
+    driver.get_screenshot_as_file(r"C:\Users\ADMIN\PycharmProjects\PythonProject\screenshots\profile_updated.png")
+    driver.find_element(By.XPATH,"//div[contains(@class,'profileUpdatedProLayer')]//child::span[normalize-space()='CrossLayer']").click()
 
+    time.sleep(15)
 
 
