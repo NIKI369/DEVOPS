@@ -10,24 +10,13 @@ from Utilities.readconfiguration import read_configuration
 
 def test_login(setup):
     driver = setup
-    url = read_configuration("basic info","url")
+
     login_xpath = read_configuration("xpath",'login_btn')
     driver.implicitly_wait(15)
     wait = WebDriverWait(driver,10)
-    driver.get(url)
+
     time.sleep(10)
-    driver.get_screenshot_as_file(r"C:\Users\ADMIN\PycharmProjects\PythonProject\screenshots\url_load.png")
-    wait.until(EC.element_to_be_clickable((By.XPATH, "//a[@id='login_Layer']"))).click()
-    #driver.find_element(By.XPATH,login_xpath).click()
-    username_xpath = read_configuration("xpath","username")
-    username = read_configuration("login","username")
-    pass_xpath = read_configuration("xpath","pass")
-    password = read_configuration("login","pass")
 
-
-    wait.until(EC.visibility_of_element_located((By.XPATH,username_xpath))).send_keys(username)
-    wait.until(EC.visibility_of_element_located((By.XPATH,pass_xpath))).send_keys(password)
-    wait.until(EC.visibility_of_element_located((By.XPATH,"//button[normalize-space()='Login']"))).click()
     #driver.find_element(By.XPATH,"//button[normalize-space()='Login']").click()
     time.sleep(10)
 
@@ -53,6 +42,31 @@ def test_login(setup):
     driver.get_screenshot_as_file(r"C:\Users\ADMIN\PycharmProjects\PythonProject\screenshots\profile_updated.png")
     driver.find_element(By.XPATH,"//div[contains(@class,'profileUpdatedProLayer')]//child::span[normalize-space()='CrossLayer']").click()
 
+    time.sleep(10)
+
+def test_share_interest(setup):
+    driver = setup
+    driver.implicitly_wait(15)
+    driver.find_element(By.XPATH,"//a[starts-with(@class,'spc__view')]").click()
+    driver.get_screenshot_as_file(r"C:\Users\ADMIN\PycharmProjects\PythonProject\screenshots\share_interest.png")
+    time.sleep(2)
+    wait = WebDriverWait(driver,15)
     time.sleep(15)
+    share_interest = driver.find_elements(By.XPATH,"//button[normalize-space()='Share interest']")
+
+    print(len(share_interest))
+    #wait.until(EC.visibility_of_element_located((By.XPATH,"Share interest")))
+    count = 0
+    for i in range(len(share_interest)):
+        wait.until(EC.visibility_of_element_located((By.XPATH,"//button[normalize-space()='Share interest']"))).click()
+        driver.get_screenshot_as_file(r"C:\Users\ADMIN\PycharmProjects\PythonProject\screenshots\shared_clicked.png")
+        time.sleep(2)
+        driver.back()
+        time.sleep(2)
+
+        count+=1
+        if count ==5:
+            break
 
 
+    time.sleep(15)
