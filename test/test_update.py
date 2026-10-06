@@ -10,7 +10,7 @@ from Utilities.readconfiguration import read_configuration
 
 def test_login(setup):
     driver = setup
-
+#NIKHIL NEW CHANGES
     login_xpath = read_configuration("xpath",'login_btn')
     driver.implicitly_wait(15)
     wait = WebDriverWait(driver,10)
